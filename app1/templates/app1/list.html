@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="section-3">
+  <div class="container-3 w-container">
+    {% for m in Manufactures %}
+     <div class="div-block-3">
+        <div class="div-block-4">
+          {% if m.ReadyToOrders %}
+          <div class="div-block-6"></div>
+          {% else %}
+          <div class="div-block-6" style="background-color: red"></div>
+          {% endif %}
+           <div class="div-block-7">
+              <h1 class="heading-2"><a href="{% url 'detail' m.id %}" class="link-3">{{ m.Name }}</a></h1>
+              <h3 class="heading-3">
+                {% for city in m.City.all %}
+                {{ city.Name }} 
+                {% endfor %}
+              </h3>
+           </div>
+        </div>
+        <div class="div-block-5">
+           <div class="div-block-8">
+            {% for spec in m.Specialization.all %}
+            <div class="div-block-10">
+              <div class="text-block-2">{{ spec.Name }}</div>
+           </div>
+            {% endfor %}
+           </div>
+           <div class="div-block-9">
+              <div class="text-block-3">В среднем отвечают за {{ m.AnswerMean }} день</div>
+           </div>
+        </div>
+     </div>
+     {% endfor %}
+  </div>
+</div>
+{% endblock %}
